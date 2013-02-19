@@ -53,7 +53,7 @@ var Path = {
         }
     },
     'match': function (path, parameterize) {
-        var params = {}, route = null, possible_routes, slice, i, j, compare;
+        var route = null, possible_routes, slice, i, j, compare, params;
         for (route in Path.routes.defined) {
             if (route !== null && route !== undefined) {
                 route = Path.routes.defined[route];
@@ -61,6 +61,7 @@ var Path = {
                 for (j = 0; j < possible_routes.length; j++) {
                     slice = possible_routes[j];
                     compare = path;
+                    params = {};
                     if (slice.search(/:/) > 0) {
                         for (i = 0; i < slice.split("/").length; i++) {
                             if ((i < compare.split("/").length) && (slice.split("/")[i].charAt(0) === ":")) {
